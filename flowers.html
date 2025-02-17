@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorry Alyana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 32px;
+            color: #e63946;
+        }
+        .gif-container {
+            margin: 20px 0;
+        }
+        .message {
+            font-size: 20px;
+            font-weight: bold;
+            min-height: 30px;
+            /* Removed the opacity transition */
+        }
+        .sakura {
+            position: absolute;
+            top: -10vh;
+            width: 20px;
+            height: 20px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>I'm Sorry Alyana</h1>
+    <div class="gif-container">
+        <img src="sunflower.gif" alt="Flower GIF" width="200">
+    </div>
+    <p class="message" id="message"></p>
+
+    <script>
+        const messages = [
+            "Hi, Alyana",
+            "Here's my apology letter for ya",
+            "I hope you'll have a good day later!",
+            "Sunflower so you can be happy and have a smile in your face :>",
+            "Goodnight Sweetdreams Alyana!"
+        ];
+        let index = 0;
+        const messageElement = document.getElementById("message");
+
+        function showMessage() {
+            messageElement.innerText = messages[index];  // Directly update the message without animation
+            index = (index + 1) % messages.length;
+        }
+
+        setInterval(showMessage, 3000);
+        showMessage();
+
+        function createSakura() {
+            const sakura = document.createElement("img");
+            sakura.classList.add("sakura");
+            sakura.src = "sakura.png"; 
+            sakura.alt = "Sakura Petal";
+            sakura.style.left = Math.random() * 100 + "vw";
+            sakura.style.animationDuration = Math.random() * 5 + 3 + "s";
+            document.body.appendChild(sakura);
+            setTimeout(() => {
+                sakura.remove();
+            }, 8000);
+        }
+
+        setInterval(createSakura, 500);
+    </script>
+</body>
+</html>
